@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Dialog"
+    title="Profilo Plus"
+    xtype="dialog">
+    <items
+        jcr:primaryType="cq:Widget"
+        xtype="tabpanel">
+        <items jcr:primaryType="cq:WidgetCollection">
+            <impostazioni
+                jcr:primaryType="cq:Panel"
+                border="false"
+                height=""
+                title="Impostazioni"
+                width="">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <map
+                        jcr:primaryType="cq:Widget"
+                        hideLabel="true"
+                        name="./map"
+                        title="Accessori"
+                        xtype="multifield">
+                        <fieldConfig
+                            jcr:primaryType="cq:Widget"
+                            border="true"
+                            layout="form"
+                            xtype="multifield-panel">
+                            <items jcr:primaryType="cq:WidgetCollection">
+                                <label
+                                    jcr:primaryType="cq:Widget"
+                                    dName="label"
+                                    fieldDescription="Nome categoria"
+                                    xtype="textfield"/>
+                                <subcat
+                                    jcr:primaryType="cq:Widget"
+                                    dName="subcat"
+                                    fieldDescription="Sotto Categorie"
+                                    xtype="multifield">
+                                    <fieldConfig
+                                        jcr:primaryType="cq:Widget"
+                                        border="true"
+                                        layout="form"
+                                        xtype="multifield-panel-sub">
+                                        <items jcr:primaryType="cq:WidgetCollection">
+                                            <nome
+                                                jcr:primaryType="cq:Widget"
+                                                cName="nome"
+                                                fieldDescription="Nome"
+                                                xtype="textfield"/>
+                                            <prezzo
+                                                jcr:primaryType="cq:Widget"
+                                                cName="prezzo"
+                                                fieldDescription="Prezzo"
+                                                xtype="textfield"/>
+                                        </items>
+                                    </fieldConfig>
+                                </subcat>
+                            </items>
+                        </fieldConfig>
+                    </map>
+                </items>
+            </impostazioni>
+            <setup
+                jcr:primaryType="cq:Panel"
+                border="false"
+                height=""
+                title="Impostazioni"
+                width="">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <path
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Percorso installazione componente"
+                        name="./path"
+                        xtype="pathfield"/>
+                </items>
+            </setup>
+        </items>
+    </items>
+</jcr:root>

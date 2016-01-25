@@ -1,0 +1,33 @@
+<!--
+<div data-sly-use.object="controller.js">
+	Risultato ${object.result}
+</div>
+-->
+
+<div id="evnt">Click me</div>
+<input type="text" id="value" />
+
+<script>	
+	document.getElementById("evnt").addEventListener("click", function(){
+	    var value = document.getElementById("value").value;
+	    insert(value);
+	});
+	
+	insert = function (nodepath) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+				alert(xhttp.responseText);
+	    	}
+		};
+		xhttp.open("POST", "/bin/JCRServiceServlet", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send('query=INS&node_path=' + nodepath);
+	};
+	
+	upd = function () {}
+	get = function () {}
+	ins = function () {}
+	del = function () {}
+	
+</script>
