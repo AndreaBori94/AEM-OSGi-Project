@@ -1,5 +1,9 @@
 package it.cgm.osgi.srv.mypost;
 
+import it.cgm.osgi.srv.mypost.query.Query;
+import it.cgm.osgi.srv.mypost.result.Result;
+import it.cgm.osgi.srv.mypost.result.ResultQueryException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -365,8 +369,7 @@ public class RepositoryManager {
 		}
 
 		default: {
-			result.setMessage("Esempio, non si capisce");
-			return result;
+			return new ResultQueryException();
 		}
 		}
 	}

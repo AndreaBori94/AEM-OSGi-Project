@@ -1,5 +1,8 @@
 package it.cgm.osgi.srv.mypost;
 
+import it.cgm.osgi.srv.mypost.query.Query;
+import it.cgm.osgi.srv.mypost.result.Result;
+
 import java.io.IOException;
 import java.rmi.ServerException;
 
@@ -69,9 +72,6 @@ public class JCRServiceServlet extends SlingAllMethodsServlet {
 					session, resourceResolver);
 			Result r = RM.doAction();
 			response.getWriter().write(r.render());
-
-			if (true)
-				return;
 
 			/*
 			 * String query = request.getParameter("query").toUpperCase(); if

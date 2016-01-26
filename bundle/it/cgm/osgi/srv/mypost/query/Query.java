@@ -1,4 +1,4 @@
-package it.cgm.osgi.srv.mypost;
+package it.cgm.osgi.srv.mypost.query;
 
 import java.util.ArrayList;
 import java.util.List;

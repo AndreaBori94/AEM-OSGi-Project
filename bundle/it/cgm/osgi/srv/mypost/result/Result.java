@@ -1,4 +1,4 @@
-package it.cgm.osgi.srv.mypost;
+package it.cgm.osgi.srv.mypost.result;
 
 import org.json.JSONObject;
 
