@@ -17,8 +17,9 @@ import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 
 /**
- * Servizio per creazione di contenuti all'interno della JavaContentRepository
- * è possibile usare un ajax con javascript per consumare questo servizio
+ * Servizio per creazione di contenuti all'interno della JavaContentRepository e'
+ * possibile usare un ajax con javascript per consumare questo servizio
+ * 
  * @author CGM2
  * @version 1.0.0
  * @since 1.0.0
@@ -45,9 +46,9 @@ public class JCRServiceServlet extends SlingAllMethodsServlet {
 	 */
 	private ResourceResolver resourceResolver = null;
 
-	
 	/**
 	 * Ereditato da SlingAllMethodsServlet richiama doPost
+	 * 
 	 * @see SlingAllMethodsServlet
 	 */
 	@Override

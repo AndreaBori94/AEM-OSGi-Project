@@ -11,7 +11,7 @@ import org.json.JSONObject;
  * Gestisce la "request" in format JSON leggendolo e restituendo le rispettive
  * informazioni necessarie all'OSGi per elaborare le richieste. tutte le
  * "chiavi" del json possono anche essere "vuote" non vengono contate come
- * errore nel caso di un INS non è necessario specificare parametri per cui si
+ * errore nel caso di un INS non e' necessario specificare parametri per cui si
  * possono "omettere" se vengono assegnati come "null" allora verra' registrato
  * un errore
  * 
@@ -25,9 +25,7 @@ public class Query {
 	/**
 	 * Contiene la definizione di tutte le azioni disponibili dal servizio
 	 */
-	public static final String[] ACTIONS = { 
-		"INS", "DEL", "SET", "GET"
-	};
+	public static final String[] ACTIONS = { "INS", "DEL", "SET", "GET" };
 	/**
 	 * L'action quale INS, DEL, UPD, SET, GET
 	 */

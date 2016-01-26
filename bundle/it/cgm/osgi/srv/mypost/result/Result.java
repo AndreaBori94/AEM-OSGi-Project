@@ -13,7 +13,7 @@ import org.json.JSONObject;
 public class Result {
 
 	/**
-	 * Lo status dell'errore -1 vuol dire che non è stato inizializzato
+	 * Lo status dell'errore -1 vuol dire che non e' stato inizializzato
 	 */
 	private int status;
 
@@ -38,8 +38,8 @@ public class Result {
 		setMessage("Invalid Result Recivied");
 		setKeySet(null);
 	}
-	
-	public void setException (Exception e) {
+
+	public void setException(Exception e) {
 		setStatus(-1);
 		setMessage("MSG: " + e.getMessage() + "\nCSE: " + e.getCause());
 	}

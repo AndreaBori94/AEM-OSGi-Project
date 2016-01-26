@@ -123,7 +123,7 @@ public class RepositoryManager {
 	 * @param path
 	 *            il percorso del nodo ( deve contenere caratteri slash
 	 *            (SHIFT+7) )
-	 * @return Node il nodo ala fine del percorso ( momentaneamente non è utile
+	 * @return Node il nodo ala fine del percorso ( momentaneamente non e' utile
 	 *         )
 	 * @throws Exception
 	 *             generalizzazione dell'eccezione
@@ -204,7 +204,7 @@ public class RepositoryManager {
 	 * @param path
 	 *            il percorso del nodo ( deve contenere caratteri slash
 	 *            (SHIFT+7) )
-	 * @return boolean condizione se il processo è riuscito o meno
+	 * @return boolean condizione se il processo e' riuscito o meno
 	 * @throws Exception
 	 *             generalizzazione dell'eccezione
 	 */
