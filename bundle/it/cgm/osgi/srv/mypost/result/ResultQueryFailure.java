@@ -1,6 +1,5 @@
 package it.cgm.osgi.srv.mypost.result;
 
-import it.cgm.osgi.srv.mypost.query.Query;
 
 /**
  * Risultato d'eccezzione, viene lanciato al posto del "return result" di
