@@ -169,7 +169,7 @@ public class RepositoryManager {
 	 * @param path
 	 *            il percorso del nodo ( deve contenere caratteri slash
 	 *            (SHIFT+7) )
-	 *            @return boolean true se ha eliminato altrimenti false
+	 * @return boolean true se ha eliminato altrimenti false
 	 * @throws Exception
 	 *             generalizzazione dell'eccezione
 	 */
@@ -222,7 +222,7 @@ public class RepositoryManager {
 			for (int i = 1; i != node_path_slip.length; i++) {
 				if (!tmp.hasNode(node_path_slip[i])) {
 					last = null;
-					break;
+					return false;
 				} else
 					tmp = tmp.getNode(node_path_slip[i]);
 			}
@@ -334,7 +334,7 @@ public class RepositoryManager {
 			// REMOVE
 			try {
 				initJCR();
-				if ( doRecursiveRem(getQueryObject().getTarget()) ) {
+				if (doRecursiveRem(getQueryObject().getTarget())) {
 					result.setStatus(0);
 					result.setMessage("success");
 				} else {
@@ -350,9 +350,12 @@ public class RepositoryManager {
 			// SETTER
 			try {
 				initJCR();
-				doRecursiveSet(getQueryObject().getTarget());
-				result.setStatus(0);
-				result.setMessage("success");
+				if (doRecursiveSet(getQueryObject().getTarget())) {
+					result.setStatus(0);
+					result.setMessage("success");
+				} else {
+					return new ResultQueryFailure();
+				}
 				closeJCR();
 			} catch (Exception e) {
 				result.setException(e);

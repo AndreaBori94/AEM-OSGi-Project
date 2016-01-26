@@ -17,6 +17,6 @@ public class ResultQueryFailure extends Result {
 	 */
 	public ResultQueryFailure() {
 		setStatus(-1);
-		setMessage("Can't proceed with deletion");
+		setMessage("Can't proceed with operation");
 	}
 }
