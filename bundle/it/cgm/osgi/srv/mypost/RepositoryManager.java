@@ -124,8 +124,8 @@ public class RepositoryManager {
 	 * @param path
 	 *            il percorso del nodo ( deve contenere caratteri slash
 	 *            (SHIFT+7) )
-	 * @return Node il nodo ala fine del percorso ( momentaneamente non e' utile
-	 *         )
+	 * @return Node il nodo ala fine del percorso oppure NULL se il nodo
+	 *         esisteva gia'
 	 * @throws Exception
 	 *             generalizzazione dell'eccezione
 	 */
@@ -140,12 +140,21 @@ public class RepositoryManager {
 			for (int i = 1; i != node_path_slip.length; i++) {
 				if (!tmp.hasNode(node_path_slip[i])) {
 					tmp = tmp.addNode(node_path_slip[i]);
-				} else
+				} else {
+					if (i == node_path_slip.length) {
+						if (tmp.hasNode(node_path_slip[i])) {
+							return null;
+						}
+					}
 					tmp = tmp.getNode(node_path_slip[i]);
+				}
 			}
 			last = tmp;
 		} else {
-			last = root.addNode(path);
+			if (!root.hasNode(path)) {
+				last = root.addNode(path);
+			} else
+				return null;
 		}
 		return last;
 	}
@@ -321,9 +330,12 @@ public class RepositoryManager {
 			// INSERT
 			try {
 				initJCR();
-				doRecursiveIns(getQueryObject().getTarget());
-				result.setStatus(0);
-				result.setMessage("success");
+				if (doRecursiveIns(getQueryObject().getTarget()) != null) {
+					result.setStatus(0);
+					result.setMessage("success");
+				} else {
+					return new ResultQueryFailure();
+				}
 				closeJCR();
 			} catch (Exception e) {
 				result.setException(e);
