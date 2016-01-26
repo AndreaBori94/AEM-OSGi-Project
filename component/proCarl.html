@@ -4,36 +4,125 @@
 </div>
 -->
 
-<div id="evnt">Click me</div>
-<input type="text" id="value" />
-
-<script>	
-/*
-	document.getElementById("evnt").addEventListener("click", function(){
-	    var value = document.getElementById("value").value;
-	    insert(value);
-	});
+<div>
+	EXAMPLE [ INSERT ]
+	<div id="">
+		<button id="ins_b">Inserisci</button>
+		<br />
+		<input type="text" placeholder="path" id="ins_t" />
+	</div>
+	<br /><br />
 	
-	insert = function (nodepath) {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (xhttp.readyState == 4 && xhttp.status == 200) {
-				alert(xhttp.responseText);
-	    	}
-		};
-		xhttp.open("POST", "/bin/JCRServiceServlet", true);
-		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhttp.send('query=INS&node_path=' + nodepath);
+	EXAMPLE [ REMOVE ]
+	<div id="">
+		<button id="rem_b">Rimuovi</button>
+		<br />
+		<input type="text"  placeholder="path" id="rem_t" />
+	</div>
+	<br /><br />
+	
+	EXAMPLE [ SETTER ]
+	<div id="">
+		<button id="set_b">Set</button>
+		<br />
+		<input type="text"  placeholder="path" id="set_t0" />
+		<input type="text"  placeholder="key" id="set_t1" />
+		<input type="text"  placeholder="value" id="set_t2" />
+	</div>
+	<br /><br />
+	
+	EXAMPLE [ GETTER ]
+	<div id="">
+		<button id="get_b">Get</button>
+		<br />
+		<input type="text" placeholder="path" id="get_t0" />
+		<input type="text" placeholder="key" id="get_t1" />
+	</div>
+	<br /><br />
+	
+	<div>
+		OUTPUT LOG:
+		<div id="output"></div>
+	</div>
+	
+</div>
+
+<script>
+	print_result = function (msg) {
+		var divOut = document.getElementById('output');
+		divOut.innerHTML = "";
+		divOut.innerHTML = msg;
+	}
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			var result = JSON.parse(xhttp.responseText);
+			print_result(JSON.stringify(result));
+	   	}
 	};
 	
-	upd = function () {}
-	get = function () {}
-	ins = function () {}
-	del = function () {}
-	*/
+	document.getElementById("ins_b").addEventListener("click", function(){
+	    xhttp.open("POST", "/bin/JCRServiceServlet", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		var json = {
+			query : "INS",
+			target: document.getElementById('ins_t').value,
+			param : [
+				[ "chiave1", "NOOO13" ],
+				[ "chiave2", "valore2" ],
+				[ "chiave3", "valore3" ],
+			],
+		};
+		xhttp.send("json=" + JSON.stringify(json));
+	});
+	
+	document.getElementById("rem_b").addEventListener("click", function(){
+	    xhttp.open("POST", "/bin/JCRServiceServlet", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		var json = {
+			query : "DEL",
+			target: document.getElementById('rem_t').value,
+			param : [
+				[ "chiave1", "NOOO13" ],
+				[ "chiave2", "valore2" ],
+				[ "chiave3", "valore3" ],
+			],
+		};
+		xhttp.send("json=" + JSON.stringify(json));
+	});
+	
+	document.getElementById("set_b").addEventListener("click", function(){
+	    xhttp.open("POST", "/bin/JCRServiceServlet", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		var json = {
+			query : "SET",
+			target: document.getElementById('set_t0').value,
+			param : [
+				[ document.getElementById('set_t1').value, document.getElementById('set_t2').value ],
+			],
+		};
+		xhttp.send("json=" + JSON.stringify(json));
+	});
+	
+	document.getElementById("get_b").addEventListener("click", function(){
+	    xhttp.open("POST", "/bin/JCRServiceServlet", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		var json = {
+			query : "GET",
+			target: document.getElementById('get_t0').value,
+			param : [
+				[ document.getElementById('get_t1').value, "" ],
+			],
+		};
+		xhttp.send("json=" + JSON.stringify(json));
+	});
+	
+	
 </script>
 
 <script>
+/*
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -45,13 +134,14 @@
 	xhttp.open("POST", "/bin/JCRServiceServlet", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var json = {
-		query : "INS",
-		target: "prova/jcr/multinodo",
+		query : "GET",
+		target: "SERVICETEST/prova/",
 		param : [
-			[ "chiave1", "valore1" ],
+			[ "chiave1", "NOOO13" ],
 			[ "chiave2", "valore2" ],
 			[ "chiave3", "valore3" ],
 		],
 	};
 	xhttp.send("json=" + JSON.stringify(json));
+	*/
 </script>
