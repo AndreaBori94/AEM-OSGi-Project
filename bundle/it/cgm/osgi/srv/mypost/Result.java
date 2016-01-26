@@ -1,8 +1,5 @@
 package it.cgm.osgi.srv.mypost;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 import org.json.JSONObject;
 
 /**

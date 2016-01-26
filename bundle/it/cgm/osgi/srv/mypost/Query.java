@@ -189,6 +189,7 @@ public class Query {
 	 * 
 	 * @return String una stringa di debug dell'oggetto Query(this)
 	 */
+	@Deprecated
 	public String toDebugString() {
 		return "DEBUG STRING : \n" + "Azione : " + getAction() + "\n"
 				+ "Target : " + getTarget() + "\n" + "Field : "
