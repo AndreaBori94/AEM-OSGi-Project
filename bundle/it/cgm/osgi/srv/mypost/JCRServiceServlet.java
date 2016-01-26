@@ -72,37 +72,6 @@ public class JCRServiceServlet extends SlingAllMethodsServlet {
 					session, resourceResolver);
 			Result r = RM.doAction();
 			response.getWriter().write(r.render());
-
-			/*
-			 * String query = request.getParameter("query").toUpperCase(); if
-			 * (query.equals("INS")) { // String node_path = //
-			 * URLEncoder.encode(request.getParameter("node_path"), // "UTF-8");
-			 * // String node_path = //
-			 * request.getParameter("node_path").replace("-", "/"); String
-			 * node_path = request.getParameter("node_path"); resourceResolver =
-			 * resolverFactory .getAdministrativeResourceResolver(null); session
-			 * = resourceResolver.adaptTo(Session.class); Node root =
-			 * session.getRootNode();
-			 * 
-			 * // RECURSIVE String[] node_path_slip = node_path.split("/"); if
-			 * (node_path_slip.length > 0) { if
-			 * (!root.hasNode(node_path_slip[0])) {
-			 * root.addNode(node_path_slip[0]); } Node tmp =
-			 * root.getNode(node_path_slip[0]); for (int i = 1; i !=
-			 * node_path_slip.length; i++) { out++; if
-			 * (!tmp.hasNode(node_path_slip[i])) { tmp =
-			 * tmp.addNode(node_path_slip[i]); } else tmp =
-			 * tmp.getNode(node_path_slip[i]); } } else {
-			 * root.addNode(node_path); } // RECURSIVE
-			 * 
-			 * Node content = root.getNode(node_path); Node custNode = content;
-			 * 
-			 * // custNode.setProperty("Insert By", //
-			 * this.getClass().getName().toString()); session.save();
-			 * session.logout(); response.getWriter().write( out +
-			 * "Hai chiesto di inserire " + node_path); } else
-			 * response.getWriter().write("Non ho capito " + query);
-			 */
 		} catch (Exception e) {
 			response.getWriter().write(e.getMessage() + " at node " + out);
 		}
