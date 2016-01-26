@@ -8,6 +8,7 @@
 <input type="text" id="value" />
 
 <script>	
+/*
 	document.getElementById("evnt").addEventListener("click", function(){
 	    var value = document.getElementById("value").value;
 	    insert(value);
@@ -29,5 +30,28 @@
 	get = function () {}
 	ins = function () {}
 	del = function () {}
-	
+	*/
+</script>
+
+<script>
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			var result = JSON.parse(xhttp.responseText);
+			console.log(result);
+			alert(result.msg);
+	   	}
+	};
+	xhttp.open("POST", "/bin/JCRServiceServlet", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var json = {
+		query : "INS",
+		target: "prova/jcr/multinodo",
+		param : [
+			[ "chiave1", "valore1" ],
+			[ "chiave2", "valore2" ],
+			[ "chiave3", "valore3" ],
+		],
+	};
+	xhttp.send("json=" + JSON.stringify(json));
 </script>
