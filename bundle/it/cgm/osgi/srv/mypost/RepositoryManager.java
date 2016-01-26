@@ -3,6 +3,7 @@ package it.cgm.osgi.srv.mypost;
 import it.cgm.osgi.srv.mypost.query.Query;
 import it.cgm.osgi.srv.mypost.result.Result;
 import it.cgm.osgi.srv.mypost.result.ResultQueryException;
+import it.cgm.osgi.srv.mypost.result.ResultQueryFailure;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -168,10 +169,11 @@ public class RepositoryManager {
 	 * @param path
 	 *            il percorso del nodo ( deve contenere caratteri slash
 	 *            (SHIFT+7) )
+	 *            @return boolean true se ha eliminato altrimenti false
 	 * @throws Exception
 	 *             generalizzazione dell'eccezione
 	 */
-	public void doRecursiveRem(String path) throws Exception {
+	public boolean doRecursiveRem(String path) throws Exception {
 		Node last = null;
 		String[] node_path_slip = path.split("/");
 		if (node_path_slip.length > 0) {
@@ -182,7 +184,7 @@ public class RepositoryManager {
 			for (int i = 1; i != node_path_slip.length; i++) {
 				if (!tmp.hasNode(node_path_slip[i])) {
 					last = null;
-					break;
+					return false;
 				} else
 					tmp = tmp.getNode(node_path_slip[i]);
 			}
@@ -194,6 +196,7 @@ public class RepositoryManager {
 				last = null;
 		}
 		last.remove();
+		return true;
 	}
 
 	/**
@@ -331,9 +334,12 @@ public class RepositoryManager {
 			// REMOVE
 			try {
 				initJCR();
-				doRecursiveRem(getQueryObject().getTarget());
-				result.setStatus(0);
-				result.setMessage("success");
+				if ( doRecursiveRem(getQueryObject().getTarget()) ) {
+					result.setStatus(0);
+					result.setMessage("success");
+				} else {
+					return new ResultQueryFailure();
+				}
 				closeJCR();
 			} catch (Exception e) {
 				result.setException(e);
