@@ -7,11 +7,7 @@
     <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            
-            <div class="list-group" id="all_profile">
-              <a href="#" class="list-group-item">Nessun profilo trovato</a>
-            </div>
-            
+                        
             <form id="sender" >                
               <fieldset class="form-group">
                 <label for="nome">Nome</label>
@@ -36,6 +32,10 @@
                 
               <input id="send" type="button" class="btn btn-primary" value="Registra" />
             </form>
+            
+            <div class="list-group" id="all_profile">
+              <a href="#" class="list-group-item">Nessun profilo trovato</a>
+            </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
     </div>
@@ -44,20 +44,46 @@
 <script>
     var allProfile = [];
     $(document).ready(function(){
+        
+        del = function (id) {
+            allProfile.splice(id, 1);
+            upd();
+        }
+        
         $('#send').click(function(){
+            if ( allProfile.length == 10 ) {
+                alert ( "Profilo massimo raggiunto" );
+                return;
+            }
+            
             var toAdd = {
                 name : $('#sender #nome').val(),
                 cgnm : $('#sender #cognome').val(),
                 code : $('#sender #code').val()
             };
-            allProfile.push (toAdd);
             
+            for ( i in allProfile ) {
+                var obj = allProfile[i];
+                if ( JSON.stringify(obj) === JSON.stringify(toAdd)  ) {
+                    alert("Profilo gia' registrato");
+                    return;
+                }
+            }
+            
+            allProfile.push (toAdd);
+            upd();
+        });
+        
+        upd = function () {
             var output = "";
             for ( i in allProfile ) {
-                output += '<a href="#" class="list-group-item">'+allProfile[i].name+ ' ' +allProfile[i].cgnm+ ' like ' +allProfile[i].code+ '</a>';
+                output += '<a href="#" class="list-group-item element" onclick="del('+i+')">'
+                    +allProfile[i].name+' '
+                    +allProfile[i].cgnm+' like '
+                    +allProfile[i].code+ '</a>';
             }            
-            $('#all_profile').html(output);
-        });
+            $('#all_profile').html(output);   
+        }
     });
 </script>
 
