@@ -25,7 +25,7 @@ public class Query {
 	/**
 	 * Contiene la definizione di tutte le azioni disponibili dal servizio
 	 */
-	public static final String[] ACTIONS = { "INS", "DEL", "SET", "GET" };
+	public static final String[] ACTIONS = { "INS", "DEL", "SET", "GET", "SEL" };
 	/**
 	 * L'action quale INS, DEL, UPD, SET, GET
 	 */
