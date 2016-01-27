@@ -244,7 +244,8 @@ public class RepositoryManager {
 		}
 		if (last != null) {
 			String[][] prop_list = getQueryObject().getParams();
-			for (int i = 0; i != prop_list.length; i++) {
+			if ( prop_list == null ) return false;
+            for (int i = 0; i != prop_list.length; i++) {
 				String k = prop_list[i][0];
 				String v = prop_list[i][1];
 				if (k != null && v != null) {
