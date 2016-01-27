@@ -73,6 +73,7 @@
         
         del = function (id) {
             allProfile.splice(id, 1);
+            // TODO: AGGIUNGI QUI LA FUNZIONE DI REMOVE
             upd();
         }
         
@@ -97,12 +98,17 @@
                 }
             }
             
+            // TODO: AGGIUNGI QUI LA FUNZIONE DI INSERT
+            
             allProfile.push (toAdd);
             msg("Aggiunto con succeso", "success");
             upd();
         });
         
         upd = function () {
+            
+            // TODO: AGGIUNGI QUI LA FUNZIONE DI DOWNLOAD
+            
             var output = "";
             for ( i in allProfile ) {                
                 output += '<li class="list-group-item element list-group-item-'+allProfile[i].colo+'" onclick="del('+i+')">'
