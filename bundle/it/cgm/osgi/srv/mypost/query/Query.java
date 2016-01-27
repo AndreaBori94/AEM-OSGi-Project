@@ -175,8 +175,9 @@ public class Query {
 			String[] temp = { param.getString(0), param.getString(1) };
 			result.add(temp);
 		}
-
-		this.param = result.toArray(new String[0][0]);
+        if ( result.size() != 0 ) {
+		  this.param = result.toArray(new String[0][0]);
+        } else this.param = null;
 		return (this.param != null);
 	}
 
