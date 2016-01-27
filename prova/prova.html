@@ -3,6 +3,55 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<html>
-    MyJCRServiceServlet OSGi
-</html>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            
+            <div class="list-group" id="all_profile">
+              <a href="#" class="list-group-item active">
+                <p align="center">
+                  Tutti i profili
+                  </p>
+              </a>
+              <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+            </div>
+            
+            <form id="sender" >                
+              <fieldset class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" placeholder="Andrea" />
+                <small class="text-muted">Il tuo nome</small>
+              </fieldset>
+                
+              <fieldset class="form-group">
+                <label for="cognome">Cognome</label>
+                <input type="text" class="form-control" id="cognome" placeholder="Bori" />
+                <small class="text-muted">Il tuo cognome</small>
+              </fieldset>
+                
+              <fieldset class="form-group">
+                <label for="exampleSelect1">Linguaggi preferiti</label>
+                <select class="form-control" id="exampleSelect1">
+                  <option>Java</option>
+                  <option>Javascript</option>
+                  <option>PHP</option>
+                </select>
+              </fieldset>
+                
+              <input id="send" type="button" class="btn btn-primary" value="Registra" />
+            </form>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('#send').click(function(){
+            var name = $('#sender #nome').val();
+            alert ("send" + name);
+        });
+    });
+</script>
+
