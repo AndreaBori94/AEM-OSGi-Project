@@ -334,6 +334,61 @@ public class RepositoryManager {
 		} else
 			return null;
 	}
+    
+    /** 
+     * Esegue un SEL ricorsivo all'interno del JCR qual'ora il percorso
+	 * s'interrompe ma non ha finito, interrompe e ritorna nullo, altrimenti prosegue.
+     * Cerca tutti i nodi dal percorso specificato in poi e li
+	 * inserisce in un array di stringhe con struttura (nome-percorso) in fine
+	 * restituisce l'array con tutti i nomi e i percorsi dentro ad un array
+	 * 
+	 * @param path
+	 *            il percorso del nodo ( deve contenere caratteri slash
+	 *            (SHIFT+7) )
+	 * @return String[][] null se non ha trovato il nodo altrimenti un array
+	 *         bidimensionale di stringhe con struttura M-Chiave=Valore
+	 * @throws Exception
+	 *             generalizzazione dell'eccezione
+	 */
+    public String[][] doRecursiveSel(String path) throws Exception {
+        Node last = null;
+		String[] node_path_slip = path.split("/");
+		if (node_path_slip.length > 0) {
+			if (!root.hasNode(node_path_slip[0])) {
+				root.addNode(node_path_slip[0]);
+			}
+			Node tmp = root.getNode(node_path_slip[0]);
+			for (int i = 1; i != node_path_slip.length; i++) {
+				if (!tmp.hasNode(node_path_slip[i])) {
+					last = null;
+					break;
+				} else
+					tmp = tmp.getNode(node_path_slip[i]);
+			}
+			last = tmp;
+		} else {
+			if (root.hasNode(path)) {
+				last = root.getNode(path);
+			} else
+				last = null;
+		}
+		if (last != null) {
+			//iteriamo cerchiamo tutti i nodi e prendiamo i loro nomi       
+            List<String[]> allNode = new ArrayList<String>();
+            NodeIterator list = last.getNodes();
+            while ( list.hasNext() ) {
+                Node tmp = list.next();
+                String[] tmp_array = {
+                    tmp.getName(),
+                    tmp.getPath()
+                }
+                allNode.add(tmp_array);
+            }            
+            //Transforma l'elenco di nomi in un array di stringhe
+            return allNode.toArray(new String[0][0]);            
+		} else
+			return null;   
+    }
 
 	/**
 	 * Esegue il servizio unendo tutte le informazioni e restituisce un oggetto
@@ -398,6 +453,20 @@ public class RepositoryManager {
                 try {
                     initJCR();
                     String[][] append = doRecursiveGet(getQueryObject().getTarget());
+                    result.setStatus(0);
+                    result.setMessage("success");
+                    result.setKeySet(append);
+                    closeJCR();
+                } catch (Exception e) {
+                    result.setException(e);
+                }
+                return result;
+            }
+            case 4: {
+                // SELECT
+                try {
+                    initJCR();
+                    String[][] append = doRecursiveSel(getQueryObject().getTarget());
                     result.setStatus(0);
                     result.setMessage("success");
                     result.setKeySet(append);
