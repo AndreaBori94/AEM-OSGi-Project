@@ -345,72 +345,72 @@ public class RepositoryManager {
 	public Result doAction() {
 		Result result = new Result();
 		switch (getQueryObject().getActionId()) {
-		case 0: {
-			// INSERT
-			try {
-				initJCR();
-				if (doRecursiveIns(getQueryObject().getTarget()) != null) {
-					result.setStatus(0);
-					result.setMessage("success");
-				} else {
-					return new ResultQueryFailure();
-				}
-				closeJCR();
-			} catch (Exception e) {
-				result.setException(e);
-			}
-			return result;
-		}
-		case 1: {
-			// REMOVE
-			try {
-				initJCR();
-				if (doRecursiveRem(getQueryObject().getTarget())) {
-					result.setStatus(0);
-					result.setMessage("success");
-				} else {
-					return new ResultQueryFailure();
-				}
-				closeJCR();
-			} catch (Exception e) {
-				result.setException(e);
-			}
-			return result;
-		}
-		case 2: {
-			// SETTER
-			try {
-				initJCR();
-				if (doRecursiveSet(getQueryObject().getTarget())) {
-					result.setStatus(0);
-					result.setMessage("success");
-				} else {
-					return new ResultQueryFailure();
-				}
-				closeJCR();
-			} catch (Exception e) {
-				result.setException(e);
-			}
-			return result;
-		}
-		case 3: {
-			// GETTER
-			try {
-				initJCR();
-				String[][] append = doRecursiveGet(getQueryObject().getTarget());
-				result.setStatus(0);
-				result.setMessage("success");
-				result.setKeySet(append);
-				closeJCR();
-			} catch (Exception e) {
-				result.setException(e);
-			}
-			return result;
-		}
+            case 0: {
+                // INSERT
+                try {
+                    initJCR();
+                    if (doRecursiveIns(getQueryObject().getTarget()) != null) {
+                        result.setStatus(0);
+                        result.setMessage("success");
+                    } else {
+                        return new ResultQueryFailure();
+                    }
+                    closeJCR();
+                } catch (Exception e) {
+                    result.setException(e);
+                }
+                return result;
+            }
+            case 1: {
+                // REMOVE
+                try {
+                    initJCR();
+                    if (doRecursiveRem(getQueryObject().getTarget())) {
+                        result.setStatus(0);
+                        result.setMessage("success");
+                    } else {
+                        return new ResultQueryFailure();
+                    }
+                    closeJCR();
+                } catch (Exception e) {
+                    result.setException(e);
+                }
+                return result;
+            }
+            case 2: {
+                // SETTER
+                try {
+                    initJCR();
+                    if (doRecursiveSet(getQueryObject().getTarget())) {
+                        result.setStatus(0);
+                        result.setMessage("success");
+                    } else {
+                        return new ResultQueryFailure();
+                    }
+                    closeJCR();
+                } catch (Exception e) {
+                    result.setException(e);
+                }
+                return result;
+            }
+            case 3: {
+                // GETTER
+                try {
+                    initJCR();
+                    String[][] append = doRecursiveGet(getQueryObject().getTarget());
+                    result.setStatus(0);
+                    result.setMessage("success");
+                    result.setKeySet(append);
+                    closeJCR();
+                } catch (Exception e) {
+                    result.setException(e);
+                }
+                return result;
+            }
 
-		default: {
-			return new ResultQueryException();
-		}
+            default: {
+                return new ResultQueryException();
+            }
 		}
 	}
 
