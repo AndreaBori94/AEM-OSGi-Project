@@ -19,10 +19,11 @@ srv.ins(
 		  [ "chiave", "valore" ],
 		],
     },
-    function () {
-    
+    function (result) {
+        console.log(result);
     },
-    function () {
-    
+    function (result) {
+        console.log("errore");
+        console.log(result);
     }
 );
