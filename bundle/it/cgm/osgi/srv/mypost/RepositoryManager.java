@@ -119,7 +119,11 @@ public class RepositoryManager {
 
 	/**
 	 * Esegue un inserimento ricorsivo all'interno del JCR qual'ora il percorso
-	 * s'interrompe ma non ha finito, crea un nodo e riprende
+	 * s'interrompe ma non ha finito, crea un nodo e riprende.
+     * se è stato specificato anche una lista di parametri nel JSON allora prova anche
+     * ad inserire quei parametri se sono nulli crea il nodo e basta, la conferma di
+     * inserimento delle chiavi all'interno del nodo non è controllabile
+     * la condizione di ritorno fa SOLO riferimento alla creazione riuscita o meno, l'inserimento di attributi non è controllabile
 	 * 
 	 * @param path
 	 *            il percorso del nodo ( deve contenere caratteri slash
@@ -153,6 +157,17 @@ public class RepositoryManager {
 		} else {
 			if (!root.hasNode(path)) {
 				last = root.addNode(path);
+                String[][] prop_list = getQueryObject().getParams();
+                if ( prop_list == null ) return true;
+                for (int i = 0; i != prop_list.length; i++) {
+                    String k = prop_list[i][0];
+                    String v = prop_list[i][1];
+                    if (k != null && v != null) {
+                        if (!k.isEmpty() && !v.isEmpty()) {
+                            last.setProperty(k, v);
+                        }
+                    }
+                }
 			} else
 				return null;
 		}
