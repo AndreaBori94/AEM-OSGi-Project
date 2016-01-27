@@ -9,12 +9,7 @@
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             
             <div class="list-group" id="all_profile">
-              <a href="#" class="list-group-item active">
-                <p align="center">
-                  Tutti i profili
-                  </p>
-              </a>
-              <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+              <a href="#" class="list-group-item">Nessun profilo trovato</a>
             </div>
             
             <form id="sender" >                
@@ -31,8 +26,8 @@
               </fieldset>
                 
               <fieldset class="form-group">
-                <label for="exampleSelect1">Linguaggi preferiti</label>
-                <select class="form-control" id="exampleSelect1">
+                <label for="code">Linguaggi preferiti</label>
+                <select class="form-control" id="code">
                   <option>Java</option>
                   <option>Javascript</option>
                   <option>PHP</option>
@@ -47,10 +42,21 @@
 </div>
 
 <script>
+    var allProfile = [];
     $(document).ready(function(){
         $('#send').click(function(){
-            var name = $('#sender #nome').val();
-            alert ("send" + name);
+            var toAdd = {
+                name : $('#sender #nome').val(),
+                cgnm : $('#sender #cognome').val(),
+                code : $('#sender #code').val()
+            };
+            allProfile.push (toAdd);
+            
+            var output = "";
+            for ( i in allProfile ) {
+                output += '<a href="#" class="list-group-item">'+allProfile[i].name+ ' ' +allProfile[i].cgnm+ ' like ' +allProfile[i].code+ '</a>';
+            }            
+            $('#all_profile').html(output);
         });
     });
 </script>
