@@ -163,6 +163,7 @@ public class RepositoryManager {
                     for (int i = 0; i != prop_list.length; i++) {
                         String k = prop_list[i][0];
                         String v = prop_list[i][1];
+                        // se una delle due non è valida esce ( null or empty )
                         if (k != null && v != null) {
                             if (!k.isEmpty() && !v.isEmpty()) {
                                 last.setProperty(k, v);
